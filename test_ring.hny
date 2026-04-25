@@ -1,0 +1,15 @@
+import ring
+
+const NBOXERS = 6
+const NROUNDS = 4
+assert NBOXERS % 2 == 0
+
+my_ring = ring.Ring(NBOXERS)
+
+def boxer(boxer_id):
+    for round in { 1 .. NROUNDS }:
+        ring.enter(?my_ring, round)
+        ring.exit(?my_ring)
+
+for i in { 0 .. NBOXERS - 1 }:
+    spawn boxer(i)
