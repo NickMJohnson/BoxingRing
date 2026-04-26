@@ -1,3 +1,10 @@
+# Test configurations to run (change NBOXERS / NROUNDS below for each):
+#   (2, 1) — minimal case: one fight, one round
+#   (2, 3) — small tournament, multiple rounds
+#   (4, 1) — single round, two simultaneous pairs
+#   (4, 3) — three rounds with two pairs each
+#   (6, 2) — three pairs per round
+#   (6, 4) — larger state space
 import ring
 
 const NBOXERS = 6
