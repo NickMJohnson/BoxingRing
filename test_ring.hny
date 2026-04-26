@@ -6,6 +6,7 @@ assert NBOXERS % 2 == 0
 
 my_ring = ring.Ring(NBOXERS)
 
+# One boxer thread: enter, fight, exit — once per round.
 def boxer(boxer_id):
     for round in { 1 .. NROUNDS }:
         ring.enter(?my_ring, round)
