@@ -1,0 +1,32 @@
+import ring
+
+const NBOXERS = 6
+const NROUNDS = 4
+assert NBOXERS % 2 == 0
+
+my_ring = ring.Ring(NBOXERS)
+
+def cap_ok():
+    result = my_ring.in_ring in { 0, 1, 2 }
+
+def state_ok():
+    result = my_ring.state in { "empty", "entering", "fighting" }
+
+def round_ok():
+    result = (my_ring.round >= 1) and (my_ring.round <= NROUNDS + 1)
+
+def exited_ok():
+    result = (my_ring.exited >= 0) and (my_ring.exited <= NBOXERS)
+
+invariant cap_ok()
+invariant state_ok()
+invariant round_ok()
+invariant exited_ok()
+
+def boxer(boxer_id):
+    for round in { 1 .. NROUNDS }:
+        ring.enter(?my_ring, round)
+        ring.exit(?my_ring)
+
+for i in { 0 .. NBOXERS - 1 }:
+    spawn boxer(i)
