@@ -1,5 +1,6 @@
 from synch import Lock, Condition, acquire, release, wait, notify_all
 
+# Shared ring state
 def Ring(nboxers):
     result = {
         .lock: Lock(),
@@ -12,6 +13,7 @@ def Ring(nboxers):
         .exited: 0,
     }
 
+# Block until round is active and they have been paired to enter ring
 def enter(ring, round):
     acquire(?ring->lock)
 
@@ -33,6 +35,7 @@ def enter(ring, round):
 
     release(?ring->lock)
 
+# If both fighters are out free next pair to enter ring
 def exit(ring):
     acquire(?ring->lock)
     ring->in_ring -= 1
